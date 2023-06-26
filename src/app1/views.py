@@ -30,8 +30,21 @@ def hello_user(request, user):
     else:
         return redirect('hello_guest', name=user)
 
+
 def my_word(request, word):
     if len(word) % 2:
         return redirect('get_time')
     else:
-        return HttpResponse (f'{word [::2]}')
+        return HttpResponse(f'{word[::2]}')
+
+
+def login(request):
+    if request.method == "POST":
+        pass
+    else:
+        name2 = request.GET.get('name1')
+        return redirect('success', name10=name2)
+
+
+def success(request, name10):
+    return HttpResponse(f'hello {name10}')
