@@ -1,9 +1,10 @@
-from django.shortcuts import render
-
+import csv
 import datetime
+import os.path
 
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+from django.template import loader
 
 
 def get_data(request):
@@ -48,3 +49,32 @@ def login(request):
 
 def success(request, name10):
     return HttpResponse(f'hello {name10}')
+
+
+def add_user(request):
+    if not os.path.exists('users.csv'):
+        with open('users.csv', 'w') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(['name', 'lastname', 'age'])
+    if request.method == "POST":
+        name = request.POST.get('name')
+        lastname = request.POST.get('lastname')
+        age = request.POST.get('age')
+        with open('users.csv', 'a') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow([name, lastname, age])
+        return HttpResponse(f'name - {name}, lastname - {lastname}, age - {age}')
+    else:
+        template = loader.get_template('form.html')
+        response = template.render({}, request)
+        return HttpResponse(response)
+
+
+def add_user_v2(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        lastname = request.POST.get('lastname')
+        age = request.POST.get('age')
+        return HttpResponse(f'name - {name}, lastname - {lastname}, age - {age}')
+    else:
+        return render(request, 'django_06_form.html')

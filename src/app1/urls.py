@@ -16,11 +16,20 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
-from app1.views import get_data, two_pow, hello_admin, hello_guest, hello_user, my_word, login, success
+from django.urls import path
+from app1.views import get_data, add_user_v2, two_pow, add_user, hello_admin, hello_guest, hello_user, my_word, login, \
+    success
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('app1/', include('app1.urls'))
+    path('', get_data, name='get_time'),
+    path('two_pow/<number>', two_pow),
+    path('my_word/<word>', my_word, name='my_word'),
+    path('hello_admin', hello_admin, name='admin'),
+    path('hello_guest/<name>', hello_guest, name='hello_guest'),
+    path('hello_user/<user>', hello_user, name='hello_user'),
+    path('success/<name10>', success, name='success'),
+    path('login/', login, name='login'),
+    path('add_user/', add_user, name='add_user'),
+    path('add_user/v2/', add_user_v2, name='add_user_v2'),
 
 ]
