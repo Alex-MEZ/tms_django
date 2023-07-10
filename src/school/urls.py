@@ -16,12 +16,12 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
-from app1.views import get_data, two_pow, hello_admin, hello_guest, hello_user, my_word, login, success
+from django.urls import path
+from app1.views import get_data, add_user_v2, two_pow, add_user, hello_admin, hello_guest, hello_user, my_word, login, \
+    success
+from school.views import all_groups_view
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('app1/', include('app1.urls')),
-    path('school/', include('school.urls'))
+    path('groups/', all_groups_view, name='all_groups')
 
 ]
