@@ -6,6 +6,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
 
+from app1.forms import UserForm
+
 
 def get_data(request):
     data = datetime.datetime.now()
@@ -72,9 +74,18 @@ def add_user(request):
 
 def add_user_v2(request):
     if request.method == "POST":
-        name = request.POST.get('name')
-        lastname = request.POST.get('lastname')
-        age = request.POST.get('age')
-        return HttpResponse(f'name - {name}, lastname - {lastname}, age - {age}')
+        form = UserForm(request.Post)
+        if form.is_valid():
+            data = form.cleaned_data
+
+            name = request.POST.get('name')
+            lastname = request.POST.get('lastname')
+            age = request.POST.get('age')
+            # content = {'fn': name, 'ln': lastname, 'age': age}
+            content = {'user': {'fn': name, 'ln': lastname, 'age': age}}
+            return render(request, 'django_06_display.html', content)
+        else:
+            errors = form.errors
+            return HttpResponse(f'error - {errors}')
     else:
-        return render(request, 'django_06_form.html')
+        return render(request, 'django_06_form.html', {'form':UserForm()})

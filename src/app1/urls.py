@@ -17,8 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from app1.views import get_data, add_user_v2, two_pow, add_user, hello_admin, hello_guest, hello_user, my_word, login, \
-    success
+from app1.views import get_data, add_user_v2, two_pow, add_user, hello_admin, hello_guest, hello_user, my_word, login, success
 
 urlpatterns = [
     path('', get_data, name='get_time'),
@@ -30,6 +29,7 @@ urlpatterns = [
     path('success/<name10>', success, name='success'),
     path('login/', login, name='login'),
     path('add_user/', add_user, name='add_user'),
-    path('add_user/v2/', add_user_v2, name='add_user_v2'),
+    path('add_user/v2/', add_user_v2, name='add_user_v2')
 
 ]
+
