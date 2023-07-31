@@ -1,16 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %} show user {& endblock%}
+{% block title%}show user data{% endblock %}
 
-{%block content%}
 
-<h3>you have add user with data:</h3>
-<!--{{ fn }}-->
-<!--{{ ln }}-->
-<!--{{ age }}-->
-
-{{ user.ln}}
-{{ user.fn}}
-{{ user.age}}
-
-{%endblock %}
+{% block content%}
+<h3>you have added user with data:</h3>
+{{ user.fn }}
+{{ user.ln }}
+{{ user.age }}
+{% endblock %}

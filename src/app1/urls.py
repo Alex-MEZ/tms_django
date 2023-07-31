@@ -14,22 +14,21 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
 from django.contrib import admin
 from django.urls import path
-from app1.views import get_data, add_user_v2, two_pow, add_user, hello_admin, hello_guest, hello_user, my_word, login, success
+
+from app1.views import get_data, two_pow, hello_admin, hello_guest, hello_user, my_word, success, login, add_user, \
+    add_user_v2
 
 urlpatterns = [
     path('', get_data, name='get_time'),
-    path('two_pow/<number>', two_pow),
-    path('my_word/<word>', my_word, name='my_word'),
-    path('hello_admin', hello_admin, name='admin'),
-    path('hello_guest/<name>', hello_guest, name='hello_guest'),
+    path('two_pow/<number>/<int:power>', two_pow),
+    path('hello_admin/', hello_admin, name='admin'),
+    path('hello_guest/<name>', hello_guest, name='hello_guest123'),
     path('hello_user/<user>', hello_user, name='hello_user'),
+    path('my_word/<word>', my_word, name='my_word'),
     path('success/<name10>', success, name='success'),
     path('login/', login, name='login'),
     path('add_user/', add_user, name='add_user'),
-    path('add_user/v2/', add_user_v2, name='add_user_v2')
-
+    path('add_user/v2/', add_user_v2, name='add_user_v2'),
 ]
-

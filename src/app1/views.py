@@ -3,7 +3,7 @@ import datetime
 import os.path
 
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import render, redirect
 from django.template import loader
 
 from app1.forms import UserForm
@@ -14,13 +14,13 @@ def get_data(request):
     return HttpResponse(data)
 
 
-def two_pow(request, number):
-    result = 2 ** int(number)
-    return HttpResponse(f'2 ** {number} = {result}')
+def two_pow(request, number, power):
+    result = int(number) ** power
+    return HttpResponse(f'{number} ** {power} = {result}')
 
 
 def hello_admin(request):
-    return HttpResponse(f'hello admin')
+    return HttpResponse('hello admin')
 
 
 def hello_guest(request, name):
@@ -31,7 +31,7 @@ def hello_user(request, user):
     if user == 'admin':
         return redirect('admin')
     else:
-        return redirect('hello_guest', name=user)
+        return redirect('hello_guest123', name=user)
 
 
 def my_word(request, word):
@@ -50,7 +50,7 @@ def login(request):
 
 
 def success(request, name10):
-    return HttpResponse(f'hello {name10}')
+    return HttpResponse("hello" + name10)
 
 
 def add_user(request):
@@ -67,25 +67,30 @@ def add_user(request):
             writer.writerow([name, lastname, age])
         return HttpResponse(f'name - {name}, lastname - {lastname}, age - {age}')
     else:
-        template = loader.get_template('form.html')
+        template = loader.get_template('django_05.html')
         response = template.render({}, request)
         return HttpResponse(response)
 
 
 def add_user_v2(request):
     if request.method == "POST":
-        form = UserForm(request.Post)
+        form = UserForm(request.POST)
         if form.is_valid():
+
             data = form.cleaned_data
 
-            name = request.POST.get('name')
-            lastname = request.POST.get('lastname')
-            age = request.POST.get('age')
-            # content = {'fn': name, 'ln': lastname, 'age': age}
+            name = data.get('name')
+            lastname = data.get('lastname')
+            age = data.get('age')
+            # content = {'fn': name,
+            #            'ln': lastname,
+            #            'age': age
+            #            }
             content = {'user': {'fn': name, 'ln': lastname, 'age': age}}
             return render(request, 'django_06_display.html', content)
         else:
             errors = form.errors
-            return HttpResponse(f'error - {errors}')
+            return HttpResponse(f'errors - {errors}')
     else:
-        return render(request, 'django_06_form.html', {'form':UserForm()})
+        content = {'form': UserForm()}
+        return render(request, 'django_06_form.html', content)

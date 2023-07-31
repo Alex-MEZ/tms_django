@@ -6,4 +6,3 @@ admin.site.register(Group)
 admin.site.register(Student)
 admin.site.register(Diary)
 admin.site.register(Book)
-# Register your models here.

@@ -1,0 +1,23 @@
+{% extends "main1.html" %}
+
+{% block title %} catdog {% endblock %}
+
+
+{% block content%}
+<H1>лови рандомную картинку</H1>
+
+<img src="{{ url }}" class="rounded-circle" alt="Cinque Terre">
+
+<form action="{%url 'send_mail'%" method="post">
+    {% csrf_token %}
+    <h3> Vvedi mylo dlya otpravki</h3>
+    <input type="email" name="Mail">
+    <buton type="submit" name="pet" class="btn btn-ourline-warning">SAVE
+    </buton>
+
+
+
+</form>
+
+
+{% endblock %}
