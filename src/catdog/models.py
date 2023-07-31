@@ -2,6 +2,7 @@ from django.db import models
 
 
 class AnimalImage(models.Model):
+    objects = None
     CHOICES_SP = [('cat', 'Kitten'), ('dog', 'Dog')]
     CHOICES_TP = [('png', 'png'), ('gif', 'gif'), ('jpg', 'jpg'), ('jpeg', 'jpeg')]
     url = models.URLField()
