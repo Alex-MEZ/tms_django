@@ -134,8 +134,8 @@ URL_FOR_DOGS = 'https://dog.ceo/api/breeds/image/random'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'makstester3@gmail.com'
-EMAIL_HOST_PASSWORD = 'unneeseffdzgncki'
+EMAIL_HOST_USER = 'e726983@gmail.com'
+EMAIL_HOST_PASSWORD = 'mrfinojpbvjvwjuu'
 EMAIL_USE_SSL = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
